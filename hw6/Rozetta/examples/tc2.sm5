@@ -1,0 +1,33 @@
+[push (x,
+	[bind f;
+	push x;
+	load;
+	push 2;
+	less;
+	jtr (
+		[push 0],
+		[push f;
+		push f;
+		push x;
+		load;
+		push 2;
+		sub;
+		malloc;
+		bind temp;
+		push temp;
+		store;
+		push temp;
+		load;
+		put;
+		push temp;
+		load;
+		malloc;
+		call]
+	)]
+);
+bind f;
+push f;
+push f;
+push 12;
+malloc;
+call]

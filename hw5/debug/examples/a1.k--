@@ -1,0 +1,5 @@
+let x := 5 in
+while (0 < x) do (
+	x := x - 1;
+	write x
+)

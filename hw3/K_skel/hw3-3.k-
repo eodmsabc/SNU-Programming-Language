@@ -1,0 +1,105 @@
+(* HW 3-3 *)
+
+(* ---TREE--- *)
+let proc leaf(i) =
+	{left := {}, val := i, right := {}}
+in
+let proc makeLtree(i, t) =
+	{left := t, val := i, right := {}}
+in
+let proc makeRtree(i, t) =
+	{left := {}, val := i, right := t}
+in
+let proc makeTree(i, lt, rt) =
+	{left := lt, val := i, right := rt}
+in
+let proc isEmpty(t) =
+	if t=unit then true else false
+in
+let proc rTree(t) =
+	t.right
+in
+let proc lTree(t) =
+	t.left
+in
+let proc nodeVal(t) =
+	t.val
+in
+(* ---TREE END--- *)
+
+
+(* ---STACK--- *)
+let proc emptyStack(x) = {} in
+let proc push(st, v) =
+	st := {value := v, stack := st}
+in
+let proc pop(st, v) =
+	if (isEmpty(st)) then unit
+	else (
+		v := st.value;
+		st := st.stack
+	)
+in
+let proc rev(st) =
+	let newst := emptyStack(unit) in
+	while (not isEmpty(st)) do (
+		let v := unit in
+		pop<st, v>; 
+		push<newst, v>
+	);newst
+in
+(* ---STACK END--- *)
+
+
+(* ---QUEUE--- *)
+let proc emptyQueue(x) = {s1 := emptyStack(unit), s2 := emptyStack(unit)} in
+let proc QisEmpty(q) =
+	if (isEmpty(q.s1)) then (
+		if (isEmpty(q.s2)) then true else false
+	)
+	else false
+in
+let proc enQueue(q, v) =
+	if v=unit then q.s1 else
+	q.s1 := push(q.s1, v)
+in
+let proc deQueue(q, v) =
+	if (QisEmpty(q)) then unit
+	else (
+		if (isEmpty(q.s2)) then (
+			q.s2 := rev(q.s1);
+			q.s1 := {};
+			deQueue<q, v>
+		)
+		else (
+			let tempst := q.s2 in
+			q.s2 := pop<tempst, v>
+		)
+	)
+in
+(* ---QUEUE END--- *)
+
+
+let proc dft(t) =
+	if (isEmpty(t)) then unit
+	else (
+		write nodeVal(t);
+		dft(lTree(t));
+		dft(rTree(t))
+	)
+in
+
+let proc bft(t) =
+	let q := emptyQueue(unit) in
+	enQueue<q, t>;
+	while(not QisEmpty(q)) do (
+		let gt := unit in
+		deQueue<q, gt>;
+		write nodeVal(gt);
+		let lt := lTree(gt) in
+		let rt := rTree(gt) in
+		enQueue<q, lt>;
+		enQueue<q, rt>
+	)
+in
+2015

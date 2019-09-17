@@ -1,0 +1,1 @@
+let i:=0 in write(write(i)+1)

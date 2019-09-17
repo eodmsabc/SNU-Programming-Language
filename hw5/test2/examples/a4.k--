@@ -1,0 +1,6 @@
+let x := 3 in
+(let proc f(x) =
+write x
+in
+f(x));
+f(3)

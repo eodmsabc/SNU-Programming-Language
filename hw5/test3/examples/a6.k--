@@ -1,0 +1,4 @@
+let x := 0 in
+for x := 2 to 4 do
+for x := 1 to 2 do
+write x

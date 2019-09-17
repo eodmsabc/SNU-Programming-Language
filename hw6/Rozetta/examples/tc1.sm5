@@ -1,0 +1,13 @@
+[push (x,
+	[push 6;
+	push 11;
+	add;
+	put]
+);
+bind f;
+push f;
+push 0;
+malloc;
+unbind;
+pop;
+call]
